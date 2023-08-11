@@ -150,7 +150,7 @@ export default function Home() {
                                         Don't have an account?
                                         <a
                                             href="#!"
-                                            className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
+                                            className="text-red-600 transition duration-150 ease-in-out hover:text-red-900 focus:text-red-800 active:text-red-900"
                                         >Register</a
                                         >
                                     </p>
