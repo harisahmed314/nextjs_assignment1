@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Header from "@/components/Header/Header";
 
-import usersData from '../data/userData.json';
+
 
 
 export default function login() {
