@@ -14,17 +14,31 @@ export default function login() {
 
     const handleLogin = (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
-
-        const user = usersData.find(user => user.email === email && user.password === password);
-
-        if (user) {
-            console.log("Login successful");
-            setLoginMessage("Login successful");
-        } else {
-            console.log("Login failed");
-            setLoginMessage("Login failed. Please check your credentials.");
-        }
+    
+        // Send POST request to /api/login endpoint with email and password
+        fetch('/api/userlog', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === 'Login successful') {
+                console.log("Login successful");
+                setLoginMessage("Login successful");
+            } else {
+                console.log("Login failed");
+                setLoginMessage("Login failed. Please check your credentials.");
+            }
+        })
+        .catch(error => {
+            console.error("There was an error logging in:", error);
+            setLoginMessage("An error occurred. Please try again later.");
+        });
     };
+    
     
     return (
         <>
@@ -118,9 +132,6 @@ export default function login() {
                                         id="exampleFormControlInput2"
                                         onChange={(e) => setEmail(e.target.value)} // Set email state on change
                                         value={email}
-                                        onBlur={(e)=>{
-                                            e.target.value=''
-                                        }}
                                         placeholder="Email address" />
                                     <label
                                         htmlFor="exampleFormControlInput2"
@@ -136,9 +147,6 @@ export default function login() {
                                         type="password"
                                         onChange={(e) => setPassword(e.target.value)} // Set password state on change
                                         value={password}
-                                        onBlur={(e)=>{
-                                            e.target.value=''
-                                        }}
                                         className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                         id="exampleFormControlInput22"
                                         placeholder="Password" />
