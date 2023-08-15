@@ -26,7 +26,7 @@ export default function Home() {
         e.preventDefault();
     
         try {
-            const response = await fetch('http://localhost:3001/register', {
+            const response = await fetch('http://localhost:3000/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export default function Home() {
 
 
                         <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-                            <form onClick={handleSubmit}>
+                            <form onSubmit={handleSubmit}>
 
                                 <div
                                     className="flex flex-row items-center justify-center lg:justify-start">
