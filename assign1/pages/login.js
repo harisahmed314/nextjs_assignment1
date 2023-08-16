@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Header from "@/components/Header/Header";
-
+import { useRouter } from "next/router";
 
 
 
@@ -12,6 +12,7 @@ export default function login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loginMessage, setLoginMessage] = useState("");
+    const router = useRouter();
    
 
 
