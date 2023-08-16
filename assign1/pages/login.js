@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import Header from "@/components/Header/Header";
+import { useRouter } from 'next/router';
+
 
 
 
@@ -11,11 +13,13 @@ export default function login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loginMessage, setLoginMessage] = useState("");
+    const router = useRouter();
+    const { Email } = router.query;
+
 
     const handleLogin = (e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
+        e.preventDefault();
     
-        // Send POST request to /api/login endpoint with email and password
         fetch('/api/userlog', {
             method: 'POST',
             headers: {
@@ -28,6 +32,10 @@ export default function login() {
             if (data.message === 'Login successful') {
                 console.log("Login successful");
                 setLoginMessage("Login successful");
+                
+                // Redirect to dashboard
+                router.push('/${Email}`');
+                
             } else {
                 console.log("Login failed");
                 setLoginMessage("Login failed. Please check your credentials.");
@@ -38,6 +46,7 @@ export default function login() {
             setLoginMessage("An error occurred. Please try again later.");
         });
     };
+    
     
     
     return (
