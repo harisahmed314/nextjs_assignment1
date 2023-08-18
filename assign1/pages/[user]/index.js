@@ -4,14 +4,21 @@ import { useRouter } from "next/router";
 
 
 
-export default function Dashboard({ user }) {
+export default function Dashboard() {
+    const router =useRouter()
+    const name=router.query.user
+
+
+  
+    
+ 
     const handleAddProduct = () => {
         // Navigate to the page where users can add a product
         // Or open a modal/popup to allow users to add a product
         console.log('Adding a product');
     }
-    const router = useRouter();
-    const {  } = router.query;
+    
+  
 
     return (
         <>
@@ -20,7 +27,7 @@ export default function Dashboard({ user }) {
                 <div className="relative py-3 sm:max-w-xl sm:mx-auto">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
                     <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                        <h1 className="text-2xl font-semibold">Welcome, {email ? email : "Loading..."} </h1> {/* Assuming user is an object containing email */}
+                        <h1 className="text-2xl font-semibold">Welcome, {name ? name: "Loading..."} </h1> {/* Assuming user is an object containing email */}
                         <div className="divide-y divide-gray-200">
                             <p className="mt-6 text-indigo-600 text-lg">
                                 This is your user dashboard. You can enhance this page by adding more user-specific details and features.
@@ -51,3 +58,5 @@ export default function Dashboard({ user }) {
         </>
     );
 }
+
+

@@ -33,7 +33,7 @@ export default function login() {
                 setLoginMessage("Login successful");
                 
                 // Redirect to dashboard
-                router.push(`/${encodeURIComponent(email)}`);
+                router.push(`/${encodeURIComponent(email)}/`);
                 
             } else {
                 console.log("Login failed");
